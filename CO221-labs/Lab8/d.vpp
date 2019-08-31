@@ -1,0 +1,119 @@
+#! /usr/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x15d02b0 .scope module, "test" "test" 2 10;
+ .timescale 0 0;
+v0x15e5e60_0 .var "CLK", 0 0;
+v0x15e5f30_0 .var "D", 0 0;
+v0x15e6000_0 .net "Q", 0 0, L_0x15e6d50; 1 drivers
+v0x15e6080_0 .var "RST", 0 0;
+S_0x15d03a0 .scope module, "myD" "positiveD" 2 15, 2 46, S_0x15d02b0;
+ .timescale 0 0;
+L_0x15e6100 .functor NOT 1, v0x15e5e60_0, C4<0>, C4<0>, C4<0>;
+v0x15e5ab0_0 .net "CLK", 0 0, v0x15e5e60_0; 1 drivers
+v0x15e5b60_0 .net "D", 0 0, v0x15e5f30_0; 1 drivers
+v0x15e5c10_0 .alias "Q", 0 0, v0x15e6000_0;
+v0x15e5c90_0 .net "Qm", 0 0, L_0x15e6700; 1 drivers
+v0x15e5d10_0 .net "RST", 0 0, v0x15e6080_0; 1 drivers
+v0x15e5de0_0 .net "clkBar", 0 0, L_0x15e6100; 1 drivers
+S_0x15e4fa0 .scope module, "masterD" "dFlipFlop" 2 53, 2 59, S_0x15d03a0;
+ .timescale 0 0;
+L_0x15e61b0 .functor NOT 1, v0x15e5f30_0, C4<0>, C4<0>, C4<0>;
+L_0x15e6210 .functor NOT 1, v0x15e6080_0, C4<0>, C4<0>, C4<0>;
+L_0x15e6300 .functor AND 1, L_0x15e61b0, L_0x15e6100, C4<1>, C4<1>;
+L_0x15e6360 .functor AND 1, v0x15e5f30_0, L_0x15e6100, C4<1>, C4<1>;
+L_0x15e6510 .functor OR 1, L_0x15e6300, v0x15e6080_0, C4<0>, C4<0>;
+L_0x15e6570 .functor AND 1, L_0x15e6360, L_0x15e6210, C4<1>, C4<1>;
+v0x15e5400_0 .alias "clk", 0 0, v0x15e5de0_0;
+v0x15e54c0_0 .alias "d", 0 0, v0x15e5b60_0;
+v0x15e5560_0 .net "notD", 0 0, L_0x15e61b0; 1 drivers
+v0x15e5600_0 .net "notReset", 0 0, L_0x15e6210; 1 drivers
+v0x15e56b0_0 .alias "q", 0 0, v0x15e5c90_0;
+v0x15e5730_0 .net "r", 0 0, L_0x15e6300; 1 drivers
+v0x15e57d0_0 .net "rWithReset", 0 0, L_0x15e6510; 1 drivers
+v0x15e5850_0 .alias "reset", 0 0, v0x15e5d10_0;
+v0x15e5920_0 .net "s", 0 0, L_0x15e6360; 1 drivers
+v0x15e59a0_0 .net "sWithReset", 0 0, L_0x15e6570; 1 drivers
+S_0x15e5090 .scope module, "sr" "sr_latch" 2 72, 2 76, S_0x15e4fa0;
+ .timescale 0 0;
+L_0x15e6700 .functor NOR 1, L_0x15e6510, L_0x15e67f0, C4<0>, C4<0>;
+L_0x15e67f0 .functor NOR 1, L_0x15e6570, L_0x15e6700, C4<0>, C4<0>;
+v0x15e5180_0 .alias "q", 0 0, v0x15e5c90_0;
+v0x15e5230_0 .net "qBar", 0 0, L_0x15e67f0; 1 drivers
+v0x15e52b0_0 .alias "r", 0 0, v0x15e57d0_0;
+v0x15e5350_0 .alias "s", 0 0, v0x15e59a0_0;
+S_0x15ceef0 .scope module, "slaveD" "dFlipFlop" 2 54, 2 59, S_0x15d03a0;
+ .timescale 0 0;
+L_0x15e6870 .functor NOT 1, L_0x15e6700, C4<0>, C4<0>, C4<0>;
+L_0x15e68f0 .functor NOT 1, v0x15e6080_0, C4<0>, C4<0>, C4<0>;
+L_0x15e6970 .functor AND 1, L_0x15e6870, v0x15e5e60_0, C4<1>, C4<1>;
+L_0x15e6ab0 .functor AND 1, L_0x15e6700, v0x15e5e60_0, C4<1>, C4<1>;
+L_0x15e6b10 .functor OR 1, L_0x15e6970, v0x15e6080_0, C4<0>, C4<0>;
+L_0x15e6bc0 .functor AND 1, L_0x15e6ab0, L_0x15e68f0, C4<1>, C4<1>;
+v0x15e4880_0 .alias "clk", 0 0, v0x15e5ab0_0;
+v0x15e4940_0 .alias "d", 0 0, v0x15e5c90_0;
+v0x15e49e0_0 .net "notD", 0 0, L_0x15e6870; 1 drivers
+v0x15e4a80_0 .net "notReset", 0 0, L_0x15e68f0; 1 drivers
+v0x15e4b30_0 .alias "q", 0 0, v0x15e6000_0;
+v0x15e4be0_0 .net "r", 0 0, L_0x15e6970; 1 drivers
+v0x15e4ca0_0 .net "rWithReset", 0 0, L_0x15e6b10; 1 drivers
+v0x15e4d20_0 .alias "reset", 0 0, v0x15e5d10_0;
+v0x15e4df0_0 .net "s", 0 0, L_0x15e6ab0; 1 drivers
+v0x15e4e90_0 .net "sWithReset", 0 0, L_0x15e6bc0; 1 drivers
+S_0x15cefe0 .scope module, "sr" "sr_latch" 2 72, 2 76, S_0x15ceef0;
+ .timescale 0 0;
+L_0x15e6d50 .functor NOR 1, L_0x15e6b10, L_0x15e6e60, C4<0>, C4<0>;
+L_0x15e6e60 .functor NOR 1, L_0x15e6bc0, L_0x15e6d50, C4<0>, C4<0>;
+v0x15cf0d0_0 .alias "q", 0 0, v0x15e6000_0;
+v0x15e4690_0 .net "qBar", 0 0, L_0x15e6e60; 1 drivers
+v0x15e4730_0 .alias "r", 0 0, v0x15e4ca0_0;
+v0x15e47d0_0 .alias "s", 0 0, v0x15e4e90_0;
+    .scope S_0x15d02b0;
+T_0 ;
+    %set/v v0x15e5e60_0, 1, 1;
+    %set/v v0x15e5f30_0, 0, 1;
+    %set/v v0x15e6080_0, 1, 1;
+    %vpi_call 2 24 "$dumpfile", "D3.vcd";
+    %vpi_call 2 25 "$dumpvars", 1'sb0, S_0x15d03a0;
+    %delay 1, 0;
+    %set/v v0x15e6080_0, 1, 1;
+    %delay 2, 0;
+    %set/v v0x15e6080_0, 0, 1;
+    %delay 1, 0;
+    %set/v v0x15e5f30_0, 1, 1;
+    %delay 3, 0;
+    %set/v v0x15e6080_0, 0, 1;
+    %delay 8, 0;
+    %set/v v0x15e5f30_0, 0, 1;
+    %delay 6, 0;
+    %set/v v0x15e5f30_0, 1, 1;
+    %delay 2, 0;
+    %set/v v0x15e5f30_0, 0, 1;
+    %delay 6, 0;
+    %set/v v0x15e5f30_0, 1, 1;
+    %delay 5, 0;
+    %set/v v0x15e5f30_0, 0, 1;
+    %delay 6, 0;
+    %set/v v0x15e5f30_0, 1, 1;
+    %delay 8, 0;
+    %set/v v0x15e6080_0, 1, 1;
+    %delay 10, 0;
+    %vpi_call 2 38 "$finish";
+    %end;
+    .thread T_0;
+    .scope S_0x15d02b0;
+T_1 ;
+    %delay 5, 0;
+    %load/v 8, v0x15e5e60_0, 1;
+    %inv 8, 1;
+    %set/v v0x15e5e60_0, 8, 1;
+    %jmp T_1;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "d.v";

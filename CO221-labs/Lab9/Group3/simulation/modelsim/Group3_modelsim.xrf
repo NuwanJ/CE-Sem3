@@ -1,0 +1,8 @@
+vendor_name = ModelSim
+source_file = 1, C:/Users/stde15_B/Desktop/Lab9/Group3/Group3.v
+source_file = 1, C:/Users/stde15_B/Desktop/Lab9/Group3/db/Group3.cbx.xml
+design_name = Group3
+instance = comp, \x1~I\, x1, Group3, 1
+instance = comp, \x2~I\, x2, Group3, 1
+instance = comp, \f~0\, f~0, Group3, 1
+instance = comp, \f~I\, f, Group3, 1

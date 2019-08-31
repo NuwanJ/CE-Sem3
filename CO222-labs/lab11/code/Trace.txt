@@ -1,0 +1,38 @@
+
+*******************************
+* Trace Tree                  *
+*******************************
+
+
+mystery1(3902){
+	print(2);
+	mystery1(390){
+		print(0);
+		mystery1(39){
+			print(9);
+			mystery1(3){
+				print(3);
+				mystery1(0){}
+			}
+		}
+	]
+}
+
+Result : 2093
+
+
+mystery2(3902){
+	mystery2(390){
+		mystery2(39){
+			mystery2(3){
+				mystery2(0){
+				
+				}
+				print(3);
+			}
+			print(9);
+		}
+		print(0);
+	}
+	print(2);
+}
